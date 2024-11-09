@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> findArray(vector<int>& pref) {
+        int n=pref.size();
+        vector<int>ans(n,0);
+        int p=pref[0];
+        ans[0]=p;
+        int res=p;
+        for(int i=1;i<pref.size();i++){
+            p^=pref[i];
+            ans[i]=p;
+            res^=ans[i];
+            p=res;
+        }
+        return ans;
+    }
+};
