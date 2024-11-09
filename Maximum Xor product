@@ -1,0 +1,27 @@
+class Solution {
+public:
+    typedef long long ll;
+    int maximumXorProduct(long long a, long long b, int n) {
+        ll axor=0,bxor=0;
+        for(ll i=49;i>=0;i--){
+            if(i>=n){
+                axor^=(a&(1ll<<i));
+                bxor^=(b&(1ll<<i));
+            }else{
+                // checek both bit or same or not
+                if((a&(1ll<<i))==(b&(1ll<<i))){
+                    axor^=(1ll<<i);
+                    bxor^=(1ll<<i);
+                }else{
+                    if(axor>bxor){
+                        bxor^=(1ll<<i);
+                    }else{
+                        axor^=(1ll<<i);
+                    }
+                }
+            }
+        }
+        ll ans=((axor%(1000000007))*(bxor%(1000000007)))%(1000000007);
+        return int(ans);
+    }
+};
