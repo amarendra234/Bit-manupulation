@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maxSubarrays(vector<int>& nums) {
+        int no_of_split=0;
+        int start=0;
+        int andSoFar=0;
+    
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==0){
+                no_of_split++;
+                andSoFar=0;
+                start=0;
+                continue;
+            }
+            if(start==0){
+                andSoFar=nums[i];
+                start++;
+            }else{
+                andSoFar=andSoFar&nums[i];
+                if(andSoFar==0){
+                    no_of_split++;
+                    start=0;
+                }
+            }
+        }
+        if(andSoFar!=0){
+            if(no_of_split==0){
+                return 1;
+            }
+            
+        }
+        return no_of_split;
+    }
+};
